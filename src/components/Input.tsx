@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {IStats, IUserProfile, type} from "../Interfaces";
 
 interface IProps {
@@ -6,7 +6,10 @@ interface IProps {
 }
 
 export default function Input(props: IProps) {
+  const [username, setUsername] = useState<string>('')
+
   return <>
+    <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)}/>
     <button onClick={()=>props.setStats({userProfile:null, commits:[], type:'morning'})}>Morning</button>
   </>
 }
