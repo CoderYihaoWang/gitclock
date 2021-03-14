@@ -3,8 +3,10 @@ export interface IUserProfile {
     avatarUrl: string
 }
 
+export type type = 'morning'|'afternoon'|'evening'|'night'
+
 export interface IStats {
     userProfile: IUserProfile|null
     commits: number[]
-    type: 'morning'|'afternoon'|'evening'|'night'
+    type: type
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import {IStats} from "../Interfaces";
+import {IStats, IUserProfile, type} from "../Interfaces";
 
 interface IProps {
   setStats: (stats: IStats) => void
@@ -11,10 +11,14 @@ export default function Input(props: IProps) {
   </>
 }
 
-function getUserProfile(username: string): string {
-  return ''
+function getUserProfile(username: string): IUserProfile {
+  return {username:'', avatarUrl:''}
 }
 
 function getCommits(username: string): number[] {
   return []
+}
+
+function getType(commits: number[]): type {
+  return 'morning'
 }
