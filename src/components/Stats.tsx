@@ -8,6 +8,7 @@ interface IProps {
 
 export default function Stats(props: IProps) {
   return <>
+    <div>{`${props.stats.userProfile?.username}`}</div>
     <button onClick={()=>props.setStats(null)}>New search</button>
   </>
 }
