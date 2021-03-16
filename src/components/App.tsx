@@ -12,7 +12,7 @@ function App() {
     'morning': 'green',
     'afternoon': 'orange',
     'evening': 'darkblue',
-    'night': 'black'
+    'night': 'purple'
   }
   const [background, setBackground] = useState<string>(gradient.default)
 
