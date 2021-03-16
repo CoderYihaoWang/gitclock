@@ -8,11 +8,11 @@ function App() {
   const [stats, setStats] = useState<IStats|null>(null)
 
   const gradient = {
-    'default': '#eee',
-    'morning': 'green',
-    'afternoon': 'orange',
-    'evening': 'darkblue',
-    'night': 'purple'
+    'default': 'linear-gradient(#c828ac, #00074a)',
+    'morning': 'linear-gradient(#4effe2, #193c00)',
+    'afternoon': 'linear-gradient(#ffbb67, #810000)',
+    'evening': 'linear-gradient(#4dcca9, #00054e)',
+    'night': 'linear-gradient(#000f26, #5321b4)'
   }
   const [background, setBackground] = useState<string>(gradient.default)
 

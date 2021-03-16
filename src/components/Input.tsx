@@ -94,24 +94,19 @@ async function getCommitsOnPage(username: string, page: number): Promise<number[
 
 async function getCommits(username: string): Promise<number[]> {
   // return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
-  const limit = 20
+  const limit = 100
   const result = new Array(24).fill(0)
   let page = 1
-  try {
-    while (page < limit) {
-      const commits = await getCommitsOnPage(encodeURI(username), page)
-      if (!commits) {
-        break
-      }
-      for (let i = 0; i < commits.length; i++) {
-        result[i] += commits[i]
-      }
-      page++
+  while (page < limit) {
+    const commits = await getCommitsOnPage(encodeURI(username), page++)
+    if (!commits) {
+      break
     }
-    return result
-  } catch (error) {
-    return result
+    for (let i = 0; i < commits.length; i++) {
+      result[i] += commits[i]
+    }
   }
+  return result
 }
 
 function getType(commits: number[]): IType {
@@ -132,5 +127,5 @@ function getType(commits: number[]): IType {
       return 'night'
   }
 
-  return 'morning'
+  return 'night'
 }
