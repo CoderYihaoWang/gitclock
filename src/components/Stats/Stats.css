@@ -1,0 +1,26 @@
+.stats-container {
+    height: 100vh;
+    opacity: 100%;
+    transition: opacity 2s;
+}
+
+.stats-container.hidden {
+    height: 0;
+    opacity: 0;
+}
+
+.bg-morning {
+    background: linear-gradient(#4effe2, #193c00);
+}
+
+.bg-afternoon {
+    background: linear-gradient(#ffbb67, #810000);
+}
+
+.bg-evening {
+    background: linear-gradient(#4dcca9, #00054e);
+}
+
+.bg-night {
+    background: linear-gradient(#000f26, #5321b4);
+}
