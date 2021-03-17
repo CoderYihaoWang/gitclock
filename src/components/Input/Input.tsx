@@ -1,49 +1,10 @@
 import React, {useState} from "react";
-import {IStats, IUserProfile, IType} from "../Interfaces";
+import {IStats, IUserProfile, IType} from "../../Interfaces";
 import {request} from "@octokit/request";
+import './Input.css';
 
 interface IProps {
   setStats: (stats: IStats|null) => void
-}
-
-export default function Input(props: IProps) {
-  const [username, setUsername] = useState<string>('')
-  const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false)
-  const [isUsernameValid, setIsUsernameValid] = useState<boolean>(true)
-  const [isStatsAvailable, setIsStatsAvailable] = useState<boolean>(true)
-
-  const handleClick = async () => {
-    setIsAnalyzing(true)
-    setIsUsernameValid(true)
-    setIsStatsAvailable(true)
-
-    const userProfile: IUserProfile|null = await getUserProfile(username)
-    if (userProfile === null) {
-      setIsUsernameValid(false)
-      setIsAnalyzing(false)
-      props.setStats(null)
-      return
-    }
-    setIsUsernameValid(true)
-
-    const commits: number[] = await getCommits(userProfile.username)
-    if (commits.length === 0 || commits.reduce((a, b) => a + b) === 0) {
-      setIsStatsAvailable(false)
-      setIsAnalyzing(false)
-      props.setStats(null)
-      return
-    }
-    setIsStatsAvailable(true)
-
-    setIsAnalyzing(false)
-    const type: IType = getType(commits)
-    props.setStats({userProfile, commits, type})
-  }
-
-  return <>
-    <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)}/>
-    <button onClick={handleClick}>Search</button>
-  </>
 }
 
 async function getUserProfile(username: string): Promise<IUserProfile|null> {
@@ -64,7 +25,7 @@ async function getUserProfile(username: string): Promise<IUserProfile|null> {
   }
 }
 
-async function getCommitsOnPage(username: string, page: number): Promise<number[]|null> {
+async function getCommitsOnePage(username: string, page: number): Promise<number[]|null> {
   try {
     const response = await request('GET /search/commits', {
       q: `author:${encodeURI(username)}+sort:author-date-desc`,
@@ -97,7 +58,7 @@ async function getCommits(username: string): Promise<number[]> {
   const result = new Array(24).fill(0)
   let page = 1
   while (page < limit) {
-    const commits = await getCommitsOnPage(encodeURI(username), page++)
+    const commits = await getCommitsOnePage(encodeURI(username), page++)
     if (!commits) {
       break
     }
@@ -113,8 +74,8 @@ function getType(commits: number[]): IType {
   const afternoonCommits = commits.slice(12, 18).reduce((a, b) => a + b)
   const eveningCommits = commits.slice(18, 24).reduce((a, b) => a + b)
   const nightCommits = commits.slice(0, 6).reduce((a, b) => a + b)
-
   const max = [morningCommits, afternoonCommits, eveningCommits, nightCommits].reduce((a, b) => a > b ? a : b)
+
   switch (max) {
     case morningCommits:
       return 'morning'
@@ -125,6 +86,49 @@ function getType(commits: number[]): IType {
     case nightCommits:
       return 'night'
   }
-
   return 'night'
+}
+
+export default function Input(props: IProps) {
+  const [username, setUsername] = useState<string>('')
+  const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false)
+  const [isUsernameValid, setIsUsernameValid] = useState<boolean>(true)
+  const [isStatsAvailable, setIsStatsAvailable] = useState<boolean>(true)
+
+  const handleClick = async () => {
+    setIsAnalyzing(true)
+    setIsUsernameValid(true)
+    setIsStatsAvailable(true)
+
+    const userProfile: IUserProfile|null = await getUserProfile(username)
+    if (userProfile === null) {
+      setIsUsernameValid(false)
+      setIsAnalyzing(false)
+      props.setStats(null)
+      return
+    }
+    setIsUsernameValid(true)
+
+    const commits = await getCommits(userProfile.username)
+    if (commits.length === 0 || commits.reduce((a, b) => a + b) === 0) {
+      setIsStatsAvailable(false)
+      setIsAnalyzing(false)
+      props.setStats(null)
+      return
+    }
+    setIsStatsAvailable(true)
+
+    setIsAnalyzing(false)
+    const type: IType = getType(commits)
+    props.setStats({userProfile, commits, type})
+  }
+
+  return <div className="input-container">
+    <h1>GitHub Clock: When Do You Make Most Commits to GitHub?</h1>
+    <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)}/>
+    <button onClick={handleClick}>Search</button>
+    {isAnalyzing && <p>Analyzing</p>}
+    {!isUsernameValid && <p>Invalid username</p>}
+    {!isStatsAvailable && <p>No stats</p>}
+  </div>
 }
