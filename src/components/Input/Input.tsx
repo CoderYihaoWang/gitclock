@@ -41,7 +41,7 @@ async function getCommitsOnePage(username: string, page: number): Promise<number
       return null
     }
     const commits = response.data.items
-    const result: number[] = new Array(24).fill(0)
+    const result = new Array(24).fill(0)
     for (const commit of commits) {
       const date = new Date(commit.commit.author.date)
       const hour = date.getHours()
@@ -75,8 +75,8 @@ function getType(commits: number[]): IType {
   const afternoonCommits = commits.slice(12, 18).reduce((a, b) => a + b)
   const eveningCommits = commits.slice(18, 24).reduce((a, b) => a + b)
   const nightCommits = commits.slice(0, 6).reduce((a, b) => a + b)
-
   const max = [morningCommits, afternoonCommits, eveningCommits, nightCommits].reduce((a, b) => a > b ? a : b)
+
   switch (max) {
     case morningCommits:
       return 'morning'
@@ -110,7 +110,7 @@ export default function Input(props: IProps) {
     }
     setIsUsernameValid(true)
 
-    const commits: number[] = await getCommits(userProfile.username)
+    const commits = await getCommits(userProfile.username)
     if (commits.length === 0 || commits.reduce((a, b) => a + b) === 0) {
       setIsStatsAvailable(false)
       setIsAnalyzing(false)

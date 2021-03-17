@@ -26,8 +26,7 @@ export default function Stats(props: IProps) {
   })(props.stats)
 
   return <div className={containerClassName}>
-    {
-      props.stats === null ? <></> : <div>
+    { props.stats &&  <div>
         <div>{`${props.stats.userProfile?.username}`}</div>
         <img src={props.stats.userProfile?.avatarUrl}  alt={props.stats.userProfile?.username}/>
         <div>{`${props.stats.commits}`}</div>
