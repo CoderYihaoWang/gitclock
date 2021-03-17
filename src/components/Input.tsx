@@ -67,7 +67,7 @@ async function getUserProfile(username: string): Promise<IUserProfile|null> {
 async function getCommitsOnPage(username: string, page: number): Promise<number[]|null> {
   try {
     const response = await request('GET /search/commits', {
-      q: 'q=' + encodeURI(`author:${username} sort:author-date-desc`),
+      q: `author:${encodeURI(username)}+sort:author-date-desc`,
       per_page: 100,
       page: page,
       mediaType: {
@@ -79,11 +79,10 @@ async function getCommitsOnPage(username: string, page: number): Promise<number[
     if (response.status !== 200) {
       return null
     }
-    const commits = response.data.items
-    const result: number[] = new Array(24).fill(0)
-    for (const commit of commits) {
-      const date = new Date(commit.commit.author.date)
-      const hour = date.getHours()
+    const items = response.data.items
+    const result = new Array(24).fill(0)
+    for (const item of items) {
+      const hour = new Date(item.commit.author.date).getHours()
       result[hour]++
     }
     return result
@@ -94,7 +93,7 @@ async function getCommitsOnPage(username: string, page: number): Promise<number[
 
 async function getCommits(username: string): Promise<number[]> {
   // return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
-  const limit = 100
+  const limit = 20
   const result = new Array(24).fill(0)
   let page = 1
   while (page < limit) {
