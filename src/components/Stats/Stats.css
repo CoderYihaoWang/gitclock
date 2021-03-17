@@ -5,7 +5,8 @@
 }
 
 .stats-container.hidden {
-    height: 0;
+    max-height: 0;
+    overflow: hidden;
     opacity: 0;
 }
 
@@ -23,4 +24,8 @@
 
 .bg-night {
     background: linear-gradient(#000f26, #5321b4);
+}
+
+.avatar {
+    width: 20px;
 }

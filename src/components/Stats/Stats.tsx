@@ -25,14 +25,20 @@ export default function Stats(props: IProps) {
     return 'stats-container'
   })(props.stats)
 
+  const info = <div>
+    <img src={props.stats?.userProfile?.avatarUrl} alt={props.stats?.userProfile?.username} className="avatar" />
+    <span>{props.stats?.userProfile?.name}(</span>
+    <span>{props.stats?.userProfile?.username}</span>
+    <span>) makes most commits {props.stats?.type === 'night' ? 'at' : 'in the'}</span>
+    <span>{props.stats?.type}</span>
+  </div>
+
+  const chart = <div>
+
+  </div>
+
   return <div className={containerClassName}>
-    { props.stats &&  <div>
-        <div>{`${props.stats.userProfile?.username}`}</div>
-        <img src={props.stats.userProfile?.avatarUrl}  alt={props.stats.userProfile?.username}/>
-        <div>{`${props.stats.commits}`}</div>
-        <div>{props.stats.commits.reduce((a,b)=>a+b)}</div>
-        <button onClick={()=>props.setStats(null)}>New search</button>
-      </div>
-    }
+    { info }
+    { chart }
   </div>
 }
