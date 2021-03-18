@@ -8,6 +8,9 @@ interface IProps {
 }
 
 export default function Stats(props: IProps) {
+  const total = props.stats?.commits.reduce((a, b) => a + b) || 1
+  const data = props.stats?.commits
+    && [...props.stats?.commits.slice(6), ...props.stats?.commits.slice(0, 6)]
   const containerClassName = ((stats: IStats|null) => {
     if (!stats) {
       return 'stats-container hidden'
@@ -25,16 +28,26 @@ export default function Stats(props: IProps) {
     return 'stats-container'
   })(props.stats)
 
-  const info = <div>
+  const info = <div className="stats-info-container">
     <img src={props.stats?.userProfile?.avatarUrl} alt={props.stats?.userProfile?.username} className="avatar" />
-    <span>{props.stats?.userProfile?.name}(</span>
+    <span>{props.stats?.userProfile?.name} (@</span>
     <span>{props.stats?.userProfile?.username}</span>
     <span>) makes most commits {props.stats?.type === 'night' ? 'at' : 'in the'}</span>
-    <span>{props.stats?.type}</span>
+    <div className="stats-info-type">{props.stats?.type}</div>
   </div>
 
-  const chart = <div>
+  const column = (n: number, hour: number) => <div className="stats-chart-column-container">
+    <div className="stats-chart-column-percent">{(n * 100).toFixed(0)}%</div>
+    <div className="stats-chart-column-data">
+      <div className="stats-chart-column-bar">
+        {new Array(Math.round(n * 100)).fill(0).map(_ => <div className="stats-chart-square" />)}
+      </div>
+      <div className="stats-chart-column-hour">{hour}:00</div>
+    </div>
+  </div>
 
+  const chart = <div className="stats-chart-container">
+    {data?.map((n, i) => column(n / total, (i + 6) % 24))}
   </div>
 
   return <div className={containerClassName}>

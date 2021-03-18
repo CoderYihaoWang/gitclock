@@ -2,6 +2,10 @@
     height: 100vh;
     width: 100vw;
     opacity: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     transition: opacity 2s;
 }
 
@@ -28,5 +32,65 @@
 }
 
 .avatar {
-    width: 20px;
+    width: 2rem;
+    padding-right: 1rem;
+}
+
+.stats-info-container {
+    text-align: center;
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: rgba(255,255,255,0.5) 0 0 10px;
+}
+
+.stats-info-type {
+    font-size: 8rem;
+    text-transform: capitalize;
+}
+
+.stats-chart-container {
+    display: flex;
+}
+
+.stats-chart-column-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1rem;
+    margin: 2px;
+}
+
+.stats-chart-column-percent, .stats-chart-column-hour {
+    height: 1rem;
+    color: white;
+    opacity: 0;
+}
+
+.stats-chart-column-container:hover .stats-chart-column-percent,
+.stats-chart-column-container:hover .stats-chart-column-hour {
+    opacity: 1;
+}
+
+.stats-chart-column-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.stats-chart-column-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+.stats-chart-square {
+    background: white;
+    width: 1rem;
+    height: 1rem;
+    margin: 2px;
+    opacity: 0.5;
+}
+
+.stats-chart-column-container:hover .stats-chart-square {
+    opacity: 1;
+    box-shadow: rgba(255,255,255,0.5) 0 0 10px;
 }
