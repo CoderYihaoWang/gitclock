@@ -8,7 +8,9 @@ interface IProps {
 }
 
 export default function Stats(props: IProps) {
-  const total = props.stats?.commits.reduce((a, b) => a + b) || 1
+  const total = props.stats === null || props.stats.commits === null
+    ? 1
+    : props.stats.commits.reduce((a, b) => a + b)
   const data = props.stats?.commits
     && [...props.stats?.commits.slice(6), ...props.stats?.commits.slice(0, 6)]
   const containerClassName = ((stats: IStats|null) => {
@@ -36,18 +38,20 @@ export default function Stats(props: IProps) {
     <div className="stats-info-type">{props.stats?.type}</div>
   </div>
 
-  const column = (n: number, hour: number) => <div className="stats-chart-column-container">
+  const column = (max: number, n: number, hour: number) => <div className="stats-chart-column-container">
     <div className="stats-chart-column-percent">{(n * 100).toFixed(0)}%</div>
     <div className="stats-chart-column-data">
       <div className="stats-chart-column-bar">
-        {new Array(Math.round(n * 100)).fill(0).map(_ => <div className="stats-chart-square" />)}
+        {new Array(Math.round(n / max * 10)).fill(0).map(_ => <div className="stats-chart-square" />)}
       </div>
       <div className="stats-chart-column-hour">{hour}:00</div>
     </div>
   </div>
 
+  const max = data?.reduce((a, b) => a > b ? a : b) || total
+
   const chart = <div className="stats-chart-container">
-    {data?.map((n, i) => column(n / total, (i + 6) % 24))}
+    {data?.map((n, i) => column(max / total, n / total, (i + 6) % 24))}
   </div>
 
   return <div className={containerClassName}>
