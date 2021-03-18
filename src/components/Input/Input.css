@@ -58,9 +58,38 @@
 }
 
 .input-footer {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    text-shadow: rgba(255,255,255,0.5) 0 0 10px;
+    font-style: italic;
+    color: white;
     height: 2rem;
+    margin-top: 2rem;
     margin-bottom: 10vh;
+}
+
+.input-analyzing {
+    animation-name: analyzing;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes analyzing {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+
+.input-footer-note {
+    margin: 0.5rem;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: lighter;
 }
 
 @media (max-width: 767px) {

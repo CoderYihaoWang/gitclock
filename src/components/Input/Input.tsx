@@ -139,9 +139,12 @@ export default function Input(props: IProps) {
   </div>
 
   const footer = <div className="input-footer">
-    {isAnalyzing && <p>Analyzing</p>}
-    {!isUsernameValid && <p>Invalid username</p>}
-    {!isStatsAvailable && <p>No stats</p>}
+    {isAnalyzing && <div className="input-analyzing">Analyzing...</div>}
+    {!isUsernameValid && <div>This user does not seem to exist...</div>}
+    {!isStatsAvailable && <div>
+        <div>No data available...</div>
+        <div className="input-footer-note">This may be caused by GitHub's rate limiting policy, please try again a few moments later.</div>
+    </div> }
   </div>
 
   return <div className="input-container">
