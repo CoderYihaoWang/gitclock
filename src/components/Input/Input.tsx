@@ -123,17 +123,19 @@ export default function Input(props: IProps) {
     props.setStats({userProfile, commits, type})
   }
 
-  const header = <div className="input-header">
-    <span>GitHub Clock</span>
-    <span>When Do You Make Most Commits to GitHub?</span>
-  </div>
+  const header = <div className="input-header">When Do You Make Most Commits?</div>
 
-  const input = <div className="input-input">
+  const input = <div className="input-input-container">
     <input
+      className="input-input"
       type="text"
+      placeholder="Your GitHub ID"
       value={username}
       onChange={(e)=>setUsername(e.target.value)}/>
-    <button onClick={handleClick}>Search</button>
+    <button
+      className="input-input-button"
+      onClick={handleClick}
+    >&#x1F50D;</button>
   </div>
 
   const footer = <div className="input-footer">
