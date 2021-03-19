@@ -31,10 +31,10 @@ export default function Input(props: IProps) {
     return {
       username: response.data.login,
       avatarUrl: response.data.avatar_url,
-      name: response.data.name
+      name: response.data.name,
+      url: response.data.html_url
     }
   }
-
   async function getCommitsOnePage(username: string, page: number): Promise<number[]|null> {
     try {
       const response = await request('GET /search/commits', {
@@ -147,7 +147,9 @@ export default function Input(props: IProps) {
     {!isUsernameValid && <div>This user does not seem to exist...</div>}
     {!isStatsAvailable && <div>
         <div>No data available...</div>
-        <div className="input-footer-note">This may be caused by GitHub's rate limiting policy, please try again a few moments later.</div>
+        <div className="input-footer-note">This may be caused by GitHub's
+            <a href="https://docs.github.com/en/rest/reference/search#rate-limit" target="_blank" rel="noreferrer">rate limiting policy</a>
+            , please try again at least one minute later.</div>
     </div> }
   </div>
 

@@ -15,19 +15,21 @@ export default function Stats(props: IProps) {
   const data = props.stats?.commits
     && [...props.stats?.commits.slice(6), ...props.stats?.commits.slice(0, 6)]
 
+  const max = data?.reduce((a, b) => a > b ? a : b) || total
+
   const containerClassName = ((stats: IStats|null) => {
     if (!stats) {
       return 'stats-container hidden'
     }
     switch (stats.type) {
       case 'morning':
-        return 'stats-container bg-morning'
+        return 'stats-container stats-bg-morning'
       case 'afternoon':
-        return 'stats-container bg-afternoon'
+        return 'stats-container stats-bg-afternoon'
       case 'evening':
-        return 'stats-container bg-evening'
+        return 'stats-container stats-bg-evening'
       case 'night':
-        return 'stats-container bg-night'
+        return 'stats-container stats-bg-night'
     }
     return 'stats-container'
   })(props.stats)
@@ -70,10 +72,10 @@ export default function Stats(props: IProps) {
   })(props.stats)
 
   const info = <div className="stats-info-container">
-    <img src={props.stats?.userProfile?.avatarUrl} alt={props.stats?.userProfile?.username} className="avatar" />
-    <span>{props.stats?.userProfile?.name} (@</span>
-    <span>{props.stats?.userProfile?.username}</span>
-    <span>) makes most commits {props.stats?.type === 'night' ? 'at' : 'in the'}</span>
+    <img src={props.stats?.userProfile?.avatarUrl} alt={props.stats?.userProfile?.username} className="stats-avatar" />
+    <span>{props.stats?.userProfile?.name} ( </span>
+    <a href={props.stats?.userProfile?.url} target="_blank" rel="noreferrer">@{props.stats?.userProfile?.username}</a>
+    <span> ) makes most commits {props.stats?.type === 'night' ? 'at' : 'in the'}</span>
     <div className="stats-info-type">{props.stats?.type}</div>
   </div>
 
@@ -87,14 +89,14 @@ export default function Stats(props: IProps) {
     </div>
   </div>
 
-  const max = data?.reduce((a, b) => a > b ? a : b) || total
-
   const chart = <div className="stats-chart-container">
     {data?.map((n, i) => column(max / total, n / total, (i + 6) % 24))}
   </div>
 
   const footer = <div className="stats-footer">
-    {percent*100}% of the latest {total} commits were made between {period}.
+    <span className="stats-footer-highlight">{percent*100}%</span>
+    <span className="stats-footer-info"> of the latest {total} commits were made between </span>
+    <span className="stats-footer-highlight">{period}</span>.
   </div>
 
   return <div className={containerClassName}>

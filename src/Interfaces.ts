@@ -2,6 +2,7 @@ export interface IUserProfile {
     username: string
     name: string
     avatarUrl: string
+    url: string
 }
 
 export type IType = 'morning'|'afternoon'|'evening'|'night'

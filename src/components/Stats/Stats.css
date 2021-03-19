@@ -1,6 +1,6 @@
 .stats-container {
     height: 100vh;
-    width: 100vw;
+    min-width: 100vw;
     opacity: 100%;
     display: flex;
     flex-direction: column;
@@ -15,41 +15,58 @@
     opacity: 0;
 }
 
-.bg-morning {
+.stats-bg-morning {
     background: linear-gradient(#4effe2, #193c00);
 }
 
-.bg-afternoon {
+.stats-bg-afternoon {
     background: linear-gradient(#ffbb67, #810000);
 }
 
-.bg-evening {
+.stats-bg-evening {
     background: linear-gradient(#4dcca9, #00054e);
 }
 
-.bg-night {
+.stats-bg-night {
     background: linear-gradient(#000f26, #5321b4);
-}
-
-.avatar {
-    width: 1.2rem;
-    padding-right: 0.5rem;
 }
 
 .stats-info-container {
     text-align: center;
     font-size: 1.2rem;
     color: white;
+    vertical-align: middle;
+}
+
+.stats-info-container a {
+    color: white;
+    font-family: monospace;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.stats-info-container a:hover {
+    text-shadow: rgba(255,255,255,0.5) 0 0 10px;
+}
+
+.stats-avatar {
+    width: 1.2rem;
+    margin-right: 0.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    vertical-align: middle;
 }
 
 .stats-info-type {
     font-size: 8rem;
+    line-height: 8rem;
     text-transform: capitalize;
     text-shadow: rgba(255,255,255,0.5) 0 0 10px;
 }
 
 .stats-chart-container {
     display: flex;
+    margin: 0.5rem;
 }
 
 .stats-chart-column-container {
@@ -61,7 +78,8 @@
 }
 
 .stats-chart-column-percent, .stats-chart-column-hour {
-    height: 1rem;
+    line-height: 1.2rem;
+    vertical-align: middle;
     color: white;
     align-items: center;
     opacity: 0;
@@ -69,6 +87,11 @@
 
 .stats-chart-column-container:hover .stats-chart-column-percent,
 .stats-chart-column-container:hover .stats-chart-column-hour {
+    opacity: 1;
+}
+
+.stats-chart-column-container:active .stats-chart-column-percent,
+.stats-chart-column-container:active .stats-chart-column-hour {
     opacity: 1;
 }
 
@@ -98,8 +121,28 @@
     box-shadow: rgba(255,255,255,0.5) 0 0 10px;
 }
 
+.stats-chart-column-container:active .stats-chart-square {
+    opacity: 1;
+    box-shadow: rgba(255,255,255,0.5) 0 0 10px;
+}
+
 .stats-footer {
     font-size: 1rem;
     color: white;
+}
+
+.stats-footer-highlight {
+    text-shadow: rgba(255,255,255,0.5) 0 0 10px;
+}
+
+.stats-footer-info {
     opacity: 0.5;
+}
+
+@media(max-width: 1000px) {
+
+}
+
+@media(max-width: 767px) {
+
 }
