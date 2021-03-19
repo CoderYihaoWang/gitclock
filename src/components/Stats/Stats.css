@@ -32,20 +32,20 @@
 }
 
 .avatar {
-    width: 2rem;
-    padding-right: 1rem;
+    width: 1.2rem;
+    padding-right: 0.5rem;
 }
 
 .stats-info-container {
     text-align: center;
     font-size: 1.2rem;
     color: white;
-    text-shadow: rgba(255,255,255,0.5) 0 0 10px;
 }
 
 .stats-info-type {
     font-size: 8rem;
     text-transform: capitalize;
+    text-shadow: rgba(255,255,255,0.5) 0 0 10px;
 }
 
 .stats-chart-container {
@@ -57,12 +57,13 @@
     flex-direction: column;
     justify-content: space-between;
     width: 1rem;
-    margin: 2px;
+    padding: 2px;
 }
 
 .stats-chart-column-percent, .stats-chart-column-hour {
     height: 1rem;
     color: white;
+    align-items: center;
     opacity: 0;
 }
 
@@ -80,6 +81,8 @@
 .stats-chart-column-bar {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .stats-chart-square {
@@ -93,4 +96,10 @@
 .stats-chart-column-container:hover .stats-chart-square {
     opacity: 1;
     box-shadow: rgba(255,255,255,0.5) 0 0 10px;
+}
+
+.stats-footer {
+    font-size: 1rem;
+    color: white;
+    opacity: 0.5;
 }
