@@ -36,6 +36,10 @@
     margin: 0;
 }
 
+.input-input:hover, .input-input:focus {
+    box-shadow: rgba(255, 255, 255, 1) 0 0 10px;
+}
+
 .input-input::placeholder {
     color: #666;
     font-style: italic;
@@ -45,16 +49,39 @@
     display: inline-block;
     box-sizing: border-box;
     font-size: 1.5rem;
-    background: white;
-    box-shadow: rgba(255,255,255,0.5) 0 0 10px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: rgba(255, 255, 255, 0.5) 0 0 10px;
     height: 3rem;
     padding-right: 1rem;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
-    border: none;
+    border: 3px solid transparent;
+    cursor: pointer;
     margin: 0;
+}
+
+.input-input-button:hover {
+    box-shadow: rgba(255, 255, 255, 1) 0 0 10px;
+    border: 3px solid #7f1e98;
+}
+
+.input-input-button:disabled {
+    opacity: 0.5;
+}
+
+.input-input-button:disabled:hover {
+    border: 3px solid transparent;
+    box-shadow: rgba(255, 255, 255, 0.5) 0 0 10px;
+}
+
+.input-input:disabled:hover {
+    box-shadow: rgba(255, 255, 255, 0.5) 0 0 10px;
+}
+
+.input-input:focus, .input-input-button:focus {
+    outline: none;
 }
 
 .input-footer {

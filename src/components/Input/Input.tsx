@@ -17,6 +17,7 @@ export default function Input(props: IProps) {
   const [progress, setProgress] = useState<number>(0)
   const [isUsernameValid, setIsUsernameValid] = useState<boolean>(true)
   const [isStatsAvailable, setIsStatsAvailable] = useState<boolean>(true)
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
   async function getUserProfile(username: string): Promise<IUserProfile|null> {
     let response
@@ -100,6 +101,7 @@ export default function Input(props: IProps) {
   }
 
   const handleClick = async () => {
+    setIsDisabled(true)
     setIsAnalyzing(true)
     setIsUsernameValid(true)
     setIsStatsAvailable(true)
@@ -108,6 +110,7 @@ export default function Input(props: IProps) {
     if (userProfile === null) {
       setIsUsernameValid(false)
       setIsAnalyzing(false)
+      setIsDisabled(false)
       props.setStats(null)
       return
     }
@@ -117,12 +120,14 @@ export default function Input(props: IProps) {
     if (commits.length === 0 || commits.reduce((a, b) => a + b) === 0) {
       setIsStatsAvailable(false)
       setIsAnalyzing(false)
+      setIsDisabled(false)
       props.setStats(null)
       return
     }
     setIsStatsAvailable(true)
 
     setIsAnalyzing(false)
+    setIsDisabled(false)
     const type: IType = getType(commits)
     props.setStats({userProfile, commits, type})
   }
@@ -135,10 +140,12 @@ export default function Input(props: IProps) {
       type="text"
       placeholder="Your GitHub ID"
       value={username}
+      disabled={isDisabled}
       onChange={(e)=>setUsername(e.target.value)}/>
     <button
       className="input-input-button"
       onClick={handleClick}
+      disabled={isDisabled}
     >&#x1F50D;</button>
   </div>
 
