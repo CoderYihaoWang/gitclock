@@ -78,7 +78,7 @@
 
 @keyframes analyzing {
     from {
-        opacity: 0;
+        opacity: 30%;
     }
     to {
         opacity: 100%;
