@@ -1,6 +1,6 @@
 .stats-container {
     height: 100vh;
-    min-width: 100vw;
+    width: 100%;
     opacity: 100%;
     display: flex;
     flex-direction: column;
@@ -9,8 +9,17 @@
     transition: opacity 2s;
 }
 
+.stats-content-container {
+    height: 100vh;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .stats-container.hidden {
-    max-height: 0;
+    height: 0;
     overflow: hidden;
     opacity: 0;
 }
@@ -66,7 +75,8 @@
 
 .stats-chart-container {
     display: flex;
-    margin: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .stats-chart-column-container {
@@ -74,7 +84,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 1rem;
-    padding: 2px;
+    margin: 2px;
 }
 
 .stats-chart-column-percent, .stats-chart-column-hour {
@@ -129,6 +139,7 @@
 .stats-footer {
     font-size: 1rem;
     color: white;
+    text-align: center;
 }
 
 .stats-footer-highlight {
@@ -139,10 +150,19 @@
     opacity: 0.5;
 }
 
-@media(max-width: 1000px) {
-
-}
-
 @media(max-width: 767px) {
+    .stats-info-type {
+        font-size: 18vw;
+    }
 
+    .stats-chart-column-container {
+        width: 2.3vw;
+        margin: 2px;
+    }
+
+    .stats-chart-square {
+        width: 2.3vw;
+        height: 2.2vw;
+        margin: 2px;
+    }
 }

@@ -100,8 +100,10 @@ export default function Stats(props: IProps) {
   </div>
 
   return <div className={containerClassName}>
-    { info }
-    { chart }
-    { footer }
+    <div className="stats-content-container">
+      { info }
+      { chart }
+      { footer }
+    </div>
   </div>
 }
