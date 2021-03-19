@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {IStats} from './Interfaces';
-import Input from './components/Input/Input';
-import Stats from './components/Stats/Stats';
+import {IStats} from '../../Interfaces';
+import Input from '../Input/Input';
+import Stats from '../Stats/Stats';
 import styles from './App.module.css'
 
 export default function App() {
