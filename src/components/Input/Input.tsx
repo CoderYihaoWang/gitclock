@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import {IStats, IUserProfile, IType} from "../../Interfaces";
 import {request} from "@octokit/request";
-import './Input.css';
+import styles from './Input.module.css';
 
 interface IProps {
   setStats: (stats: IStats|null) => void
 }
 
 function Progress(props: { progress:number }) {
-  return <div className="input-analyzing">Fetching data - {Math.round(props.progress * 100)}%</div>
+  return <div className={styles.analyzing}>Fetching data - {Math.round(props.progress * 100)}%</div>
 }
 
 export default function Input(props: IProps) {
@@ -132,35 +132,35 @@ export default function Input(props: IProps) {
     props.setStats({userProfile, commits, type})
   }
 
-  const header = <div className="input-header">When Do You Make Most Commits?</div>
+  const header = <div className={styles.header}>When Do You Make Most Commits?</div>
 
-  const input = <div className="input-input-container">
+  const input = <div className={styles.inputContainer}>
     <input
-      className="input-input"
+      className={styles.input}
       type="text"
       placeholder="Your GitHub ID"
       value={username}
       disabled={isDisabled}
       onChange={(e)=>setUsername(e.target.value)}/>
     <button
-      className="input-input-button"
+      className={styles.button}
       onClick={handleClick}
       disabled={isDisabled}
     >&#x1F50D;</button>
   </div>
 
-  const footer = <div className="input-footer">
+  const footer = <div className={styles.footer}>
     {isAnalyzing && <Progress progress={progress / 1000} />}
     {!isUsernameValid && <div>This user does not seem to exist...</div>}
     {!isStatsAvailable && <div>
         <div>No data available...</div>
-        <div className="input-footer-note">This may be caused by GitHub's
+        <div className={styles.footerNote}>This may be caused by GitHub's
             <a href="https://docs.github.com/en/rest/reference/search#rate-limit" target="_blank" rel="noreferrer">rate limiting policy</a>
             , please try again at least one minute later.</div>
     </div> }
   </div>
 
-  return <div className="input-container">
+  return <div className={styles.container}>
     { header }
     { input }
     { footer }

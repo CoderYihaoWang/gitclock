@@ -1,4 +1,4 @@
-.input-container {
+.container {
     height: 100vh;
     max-width: 80vw;
     display: flex;
@@ -7,7 +7,7 @@
     justify-content: center;
 }
 
-.input-header {
+.header {
     font-size: 3rem;
     font-weight: 700;
     text-shadow: rgba(255,255,255,0.5) 0 0 10px;
@@ -15,7 +15,7 @@
     margin-bottom: 10vh;
 }
 
-.input-input {
+.input {
     display: inline-block;
     box-sizing: border-box;
     color: #7f1e98;
@@ -36,16 +36,16 @@
     margin: 0;
 }
 
-.input-input:hover, .input-input:focus {
+.input:hover, .input:focus {
     box-shadow: rgba(255, 255, 255, 1) 0 0 10px;
 }
 
-.input-input::placeholder {
+.input::placeholder {
     color: #666;
     font-style: italic;
 }
 
-.input-input-button {
+.button {
     display: inline-block;
     box-sizing: border-box;
     font-size: 1.5rem;
@@ -62,29 +62,29 @@
     margin: 0;
 }
 
-.input-input-button:hover {
+.button:hover {
     box-shadow: rgba(255, 255, 255, 1) 0 0 10px;
     border: 3px solid #7f1e98;
 }
 
-.input-input-button:disabled {
+.button:disabled {
     opacity: 0.5;
 }
 
-.input-input-button:disabled:hover {
+.button:disabled:hover {
     border: 3px solid transparent;
     box-shadow: rgba(255, 255, 255, 0.5) 0 0 10px;
 }
 
-.input-input:disabled:hover {
+.input:disabled:hover {
     box-shadow: rgba(255, 255, 255, 0.5) 0 0 10px;
 }
 
-.input-input:focus, .input-input-button:focus {
+.input:focus, .button:focus {
     outline: none;
 }
 
-.input-footer {
+.footer {
     font-size: 1.5rem;
     text-align: center;
     text-shadow: rgba(255,255,255,0.5) 0 0 10px;
@@ -95,7 +95,7 @@
     margin-bottom: 10vh;
 }
 
-.input-analyzing {
+.analyzing {
     animation-name: analyzing;
     animation-duration: 1s;
     animation-timing-function: ease-in-out;
@@ -112,14 +112,14 @@
     }
 }
 
-.input-footer-note {
+.footerNote {
     margin: 0.5rem;
     font-size: 1rem;
     font-style: normal;
     font-weight: lighter;
 }
 
-.input-footer-note a {
+.footerNote a {
     margin: 0.5rem;
     color: white;
     font-size: 1rem;
@@ -130,7 +130,7 @@
 }
 
 @media (max-width: 767px) {
-    .input-container {
+    .container {
         width: 80vw;
     }
 }

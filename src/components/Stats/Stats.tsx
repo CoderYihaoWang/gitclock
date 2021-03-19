@@ -1,6 +1,6 @@
 import React from 'react';
 import {IStats} from "../../Interfaces";
-import './Stats.css';
+import styles from './Stats.module.css';
 
 interface IProps {
   stats: IStats|null
@@ -19,19 +19,19 @@ export default function Stats(props: IProps) {
 
   const containerClassName = ((stats: IStats|null) => {
     if (!stats) {
-      return 'stats-container hidden'
+      return `${styles.container} ${styles.hidden}`
     }
     switch (stats.type) {
       case 'morning':
-        return 'stats-container stats-bg-morning'
+        return `${styles.container} ${styles.bgMorning}`
       case 'afternoon':
-        return 'stats-container stats-bg-afternoon'
+        return `${styles.container} ${styles.bgAfternoon}`
       case 'evening':
-        return 'stats-container stats-bg-evening'
+        return `${styles.container} ${styles.bgEvening}`
       case 'night':
-        return 'stats-container stats-bg-night'
+        return `${styles.container} ${styles.bgNight}`
     }
-    return 'stats-container'
+    return `${styles.container}`
   })(props.stats)
 
   const period = ((stats: IStats|null) => {
@@ -71,36 +71,36 @@ export default function Stats(props: IProps) {
     return commits.reduce((a, b) => a + b) / total
   })(props.stats)
 
-  const info = <div className="stats-info-container">
-    <img src={props.stats?.userProfile?.avatarUrl} alt={props.stats?.userProfile?.username} className="stats-avatar" />
+  const info = <div className={styles.infoContainer}>
+    <img src={props.stats?.userProfile?.avatarUrl} alt={props.stats?.userProfile?.username} className={styles.avatar} />
     <span>{props.stats?.userProfile?.name} ( </span>
     <a href={props.stats?.userProfile?.url} target="_blank" rel="noreferrer">@{props.stats?.userProfile?.username}</a>
     <span> ) makes most commits {props.stats?.type === 'night' ? 'at' : 'in the'}</span>
-    <div className="stats-info-type">{props.stats?.type}</div>
+    <div className={styles.infoType}>{props.stats?.type}</div>
   </div>
 
-  const column = (max: number, n: number, hour: number) => <div className="stats-chart-column-container">
-    <div className="stats-chart-column-percent">{(n * 100).toFixed(0)}%</div>
-    <div className="stats-chart-column-data">
-      <div className="stats-chart-column-bar">
-        {new Array(Math.round(n / max * 10)).fill(0).map(_ => <div className="stats-chart-square" />)}
+  const column = (max: number, n: number, hour: number) => <div className={styles.chartColumnContainer}>
+    <div className={styles.chartColumnPercent}>{(n * 100).toFixed(0)}%</div>
+    <div className={styles.chartColumnData}>
+      <div className={styles.chartColumnBar}>
+        {new Array(Math.round(n / max * 10)).fill(0).map(_ => <div className={styles.chartSquare} />)}
       </div>
-      <div className="stats-chart-column-hour">{hour}:00</div>
+      <div className={styles.chartColumnHour}>{hour}:00</div>
     </div>
   </div>
 
-  const chart = <div className="stats-chart-container">
+  const chart = <div className={styles.chartContainer}>
     {data?.map((n, i) => column(max / total, n / total, (i + 6) % 24))}
   </div>
 
-  const footer = <div className="stats-footer">
-    <span className="stats-footer-highlight">{percent*100}%</span>
-    <span className="stats-footer-info"> of the latest {total} commits were made between </span>
-    <span className="stats-footer-highlight">{period}</span>.
+  const footer = <div className={styles.footer}>
+    <span className={styles.footerHighlight}>{percent*100}%</span>
+    <span className={styles.footerInfo}> of the latest {total} commits were made between </span>
+    <span className={styles.footerHighlight}>{period}</span>.
   </div>
 
   return <div className={containerClassName}>
-    <div className="stats-content-container">
+    <div className={styles.contentContainer}>
       { info }
       { chart }
       { footer }
