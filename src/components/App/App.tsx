@@ -9,6 +9,6 @@ export default function App() {
 
   return <div className={styles.app}>
     { stats === null && <Input setStats={setStats}/> }
-    <Stats stats={stats} setStats={setStats}/>
+    <Stats stats={stats} />
   </div>
 }

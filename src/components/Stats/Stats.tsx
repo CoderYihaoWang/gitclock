@@ -4,7 +4,6 @@ import styles from './Stats.module.css';
 
 interface IProps {
   stats: IStats|null
-  setStats: (stats: IStats|null) => void
 }
 
 export default function Stats(props: IProps) {
@@ -99,7 +98,7 @@ export default function Stats(props: IProps) {
     <span className={styles.footerHighlight}>{period}</span>.
   </div>
 
-  return <div className={containerClassName}>
+  return <div className={containerClassName} data-testid="stats">
     <div className={styles.contentContainer}>
       { info }
       { chart }
