@@ -65,10 +65,10 @@ export default function Input(props: IProps) {
   }
 
   async function getCommits(username: string): Promise<number[]> {
-    const limit = 20
+    const limit = 10
     const result = new Array(24).fill(0)
     let page = 1
-    while (page < limit) {
+    while (page <= limit) {
       const commits = await getCommitsOnePage(encodeURI(username), page++)
       if (!commits) {
         break
@@ -132,16 +132,17 @@ export default function Input(props: IProps) {
     props.setStats({userProfile, commits, type})
   }
 
-  const header = <div className={styles.header}>When Do You Make Most Commits?</div>
+  const header = <div className={styles.header} data-testid="input-header">When Do You Make Most Commits?</div>
 
-  const input = <div className={styles.inputContainer}>
+  const input = <div className={styles.inputContainer} data-testid="input-input">
     <input
       className={styles.input}
       type="text"
       placeholder="Your GitHub ID"
       value={username}
       disabled={isDisabled}
-      onChange={(e)=>setUsername(e.target.value)}/>
+      onChange={(e)=>setUsername(e.target.value)}
+    />
     <button
       className={styles.button}
       onClick={handleClick}
@@ -149,7 +150,7 @@ export default function Input(props: IProps) {
     >&#x1F50D;</button>
   </div>
 
-  const footer = <div className={styles.footer}>
+  const footer = <div className={styles.footer} data-testid="input-footer">
     {isAnalyzing && <Progress progress={progress / 1000} />}
     {!isUsernameValid && <div>This user does not seem to exist...</div>}
     {!isStatsAvailable && <div>
@@ -160,7 +161,7 @@ export default function Input(props: IProps) {
     </div> }
   </div>
 
-  return <div className={styles.container}>
+  return <div className={styles.container} data-testid="input">
     { header }
     { input }
     { footer }
