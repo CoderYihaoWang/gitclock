@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/gitclock/static/css/main.014a7eab.chunk.css",
+    "main.css": "/gitclock/static/css/main.202d4b47.chunk.css",
     "main.js": "/gitclock/static/js/main.efadd6be.chunk.js",
     "main.js.map": "/gitclock/static/js/main.efadd6be.chunk.js.map",
     "runtime-main.js": "/gitclock/static/js/runtime-main.06d1970f.js",
@@ -10,13 +10,13 @@
     "static/js/3.ecdc2eb7.chunk.js": "/gitclock/static/js/3.ecdc2eb7.chunk.js",
     "static/js/3.ecdc2eb7.chunk.js.map": "/gitclock/static/js/3.ecdc2eb7.chunk.js.map",
     "index.html": "/gitclock/index.html",
-    "static/css/main.014a7eab.chunk.css.map": "/gitclock/static/css/main.014a7eab.chunk.css.map",
+    "static/css/main.202d4b47.chunk.css.map": "/gitclock/static/css/main.202d4b47.chunk.css.map",
     "static/js/2.b759be6d.chunk.js.LICENSE.txt": "/gitclock/static/js/2.b759be6d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.06d1970f.js",
     "static/js/2.b759be6d.chunk.js",
-    "static/css/main.014a7eab.chunk.css",
+    "static/css/main.202d4b47.chunk.css",
     "static/js/main.efadd6be.chunk.js"
   ]
 }
