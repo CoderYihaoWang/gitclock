@@ -106,7 +106,7 @@ export default function Input(props: IProps) {
     setIsUsernameValid(true)
     setIsStatsAvailable(true)
 
-    const userProfile: IUserProfile|null = await getUserProfile(username)
+    const userProfile: IUserProfile|null = await getUserProfile(username.trim())
     if (userProfile === null) {
       setIsUsernameValid(false)
       setIsAnalyzing(false)
