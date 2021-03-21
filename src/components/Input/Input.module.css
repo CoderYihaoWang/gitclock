@@ -27,8 +27,7 @@
     height: 3rem;
     width: 20rem;
     max-width: 60vw;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
+    border-radius: 2rem 0 0 2rem;
     padding-left: 2rem;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
@@ -55,8 +54,7 @@
     padding-right: 1rem;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    border-radius: 0 2rem 2rem 0;
     border: 3px solid transparent;
     cursor: pointer;
     margin: 0;
