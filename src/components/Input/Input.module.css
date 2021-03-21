@@ -103,10 +103,10 @@
 
 @keyframes analyzing {
     from {
-        opacity: 30%;
+        opacity: 0.3;
     }
     to {
-        opacity: 100%;
+        opacity: 1;
     }
 }
 
